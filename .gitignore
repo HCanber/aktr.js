@@ -1,0 +1,8 @@
+typings
+node_modules
+.tmp
+.idea
+npm-debug.log
+.DS_Store
+coverage.html
+.vscode/*
