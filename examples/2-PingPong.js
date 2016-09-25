@@ -10,23 +10,24 @@ const {startTask, sleep} = actorSystem.settings.system.scheduler
 
 const StopMessage = Symbol('Stop')
 
-let messagesLeft = 3
 function* pingActor({message, sender, context}) {
+  if (message === StopMessage) {
+    console.log('Ping Actor: Received "STOP"  Terminating in 1s')
+    yield sleep(1000)
+    context.stop()
+    return
+  }
   console.log(`Ping Actor: Received "${message}"`)
   yield sleep(300)
-  messagesLeft--
-  if (messagesLeft)
-    yield sender.send({ message: 'Pong', sender: context.self })
-  else {
-    yield sender.send(StopMessage)
-    context.stop()
-  }
+  yield sender.send({ message: 'Pong', sender: context.self })
 }
 
 function* pongActor({message, sender, context}) {
   if (message === StopMessage) {
-    console.log('Pong Actor: Received "STOP"')
+    console.log('Pong Actor: Received "STOP". Terminating in 1s')
+    yield sleep(1000)
     context.stop()
+    return
   } else {
     console.log(`Pong Actor: Received "${message}"`)
     yield sleep(300)
@@ -38,5 +39,13 @@ var pong = actorSystem.createActor({ receive: pongActor })
 
 startTask(function* () {
   yield pong.send({ message: 'Pong', sender: ping })
-  yield sleep(10000)
+  yield* actorSystem.awaitTermination()
+  console.log('All actors have terminated')
+})
+
+startTask(function* () {
+  yield sleep(3000)
+  console.log('Terminating')
+  yield ping.send(StopMessage)
+  yield pong.send(StopMessage)
 })
