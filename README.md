@@ -41,4 +41,4 @@ npm test
 
 ## License
 
-See [LICENSE](LICENSE) and [licenses](licences/)
+See [LICENSE](LICENSE.md) and [licenses](licences/)
