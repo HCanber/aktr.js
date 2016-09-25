@@ -11,18 +11,18 @@ __This code is experimental!__
 ## Try
 
 ``` sh
-npm clone https://github.com/HCanber/aktr.js.git
-cd aktr.js
-npm install js-csp
+git clone https://github.com/HCanber/aktr.js.git aktrjs
+cd aktrjs
+npm install
 node examples/1-HelloWorld.js
 ```
 
 ## Develop
 
 ``` sh
-npm clone https://github.com/HCanber/aktr.js.git
-cd aktr.js
-npm install js-csp
+git clone https://github.com/HCanber/aktr.js.git aktrjs
+cd aktrjs
+npm install
 ```
 
 ### Restore typings

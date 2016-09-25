@@ -1,18 +1,24 @@
 {
   "name": "aktr.js",
   "version": "0.0.1-alpha001",
+  "author": "Håkan Canberger",
   "description": "Actors in javascript (EXPERIMENTAL)",
-  "license": "mit",
+  "license": "MIT",
+  "repository": "https://github.com/HCanber/aktr.js.git",
+  "bugs": {
+    "url": "https://github.com/HCanber/aktr.js/issues"
+  },
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Håkan Canberger",
-  "license": "ISC",
   "dependencies": {},
   "devDependencies": {
     "mocha": "^3.0.2",
     "should": "^11.1.0"
+  },
+  "optionalDependencies": {
+    "js-csp": "0.7.x"
   },
   "engines": {
     "node": ">=6.6"
